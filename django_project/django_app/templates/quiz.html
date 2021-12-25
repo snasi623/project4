@@ -1,0 +1,43 @@
+{% extends "navbar.html" %}
+
+{% block main %}
+
+<div class="container-fluid text-center">    
+    <div class="panel panel-default questions">
+        <div class="panel-heading">Question 1</div>
+        <div class="panel-body">Here is where the question will go.</div>
+    </div>
+    <div class="options">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">Answer A</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">Answer B</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">Answer C</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">Answer D</div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn">Submit Quiz</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
