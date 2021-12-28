@@ -21,7 +21,7 @@ from django_app import views as quiz_views
 urlpatterns = [
     path('home/', quiz_views.index, name='home'),
     path('create/', quiz_views.create, name='create'),
-    path('', quiz_views.quiz, name='quiz'),
-    path('score/', quiz_views.score, name='score'),
+    path('quiz', quiz_views.quiz, name='quiz'),
+    path('', quiz_views.score, name='score'),
     path('admin/', admin.site.urls),
 ]
