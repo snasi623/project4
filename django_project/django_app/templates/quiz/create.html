@@ -1,0 +1,123 @@
+{% extends "quiz/navbar.html" %}
+{% load widget_tweaks %}
+
+{% block main %}
+
+<div class="container-fluid text-center">   
+    <form method="POST">
+        {% csrf_token %}
+
+        <h2>Create Quiz Name</h2>
+        <div class="form-group">
+            <label for="Quiz Name">Enter Quiz Name</label>
+            {% render_field form.name class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="Quiz Name">Enter Quiz Categories</label>
+            {% render_field form.tags class="form-control" %}
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <button class="btn">Back</button>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn">Add Question</button>
+            </div>
+        </div>
+
+        <h2>Create Question</h2>
+        <div class="form-group">
+            <label for="question">Enter Quiz Question</label>
+            {% render_field form.question rows="3" class="form-control" %}
+        </div>
+        <div class="options">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="optionA">Option A</label>
+                        {% render_field form.option_A class="form-control" %}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="optionB">Option B</label>
+                        {% render_field form.option_B class="form-control" %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="optionC">Option C</label>
+                        {% render_field form.option_C class="form-control" %}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="optionD">Option D</label>
+                        {% render_field form.option_D class="form-control" %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <button class="btn">Back</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn">Add Another Option</button>
+                </div>                
+                <div class="col-sm-4">
+                    <button class="btn">Select Answer</button>
+                </div>
+            </div>
+        </div>
+
+        <h2>Select Answer</h2>
+        <div class="form-group">
+            <label for="question">Enter Quiz Question</label>
+            {{ form.question }}
+        </div>
+        <div class="options">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="optionA">Option A</label>
+                        {{ form.option_A }}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="optionB">Option B</label>
+                        {{ form.option_B }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="optionC">Option C</label>
+                        {{ form.option_C }}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="optionD">Option D</label>
+                        {{ form.option_D }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <button class="btn">Back</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn">Submit Quiz</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn">Add Another Question</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from .forms import CreateQuiz
 
-# Create your views here.
 def index(request):
     context = {}
-    return render(request, 'index.html', context)
+    return render(request, 'quiz/index.html', context)
 
 def create(request):
     if request.method == 'POST':
@@ -13,12 +12,12 @@ def create(request):
         form = CreateQuiz()
 
     context = {'form' : form}
-    return render(request, 'create.html', context)
+    return render(request, 'quiz/create.html', context)
 
 def quiz(request):
     context = {}
-    return render(request, 'quiz.html', context)
+    return render(request, 'quiz/quiz.html', context)
 
-def score(request):
+def results(request):
     context = {}
-    return render(request, 'score.html', context)
+    return render(request, 'quiz/results.html', context)

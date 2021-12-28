@@ -19,9 +19,9 @@ from django_app import views as quiz_views
 
 
 urlpatterns = [
-    path('home/', quiz_views.index, name='home'),
+    path('', quiz_views.index, name='home'),
     path('create/', quiz_views.create, name='create'),
     path('quiz', quiz_views.quiz, name='quiz'),
-    path('', quiz_views.score, name='score'),
+    path('results/', quiz_views.results, name='results'),
     path('admin/', admin.site.urls),
 ]

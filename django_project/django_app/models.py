@@ -2,6 +2,10 @@ from django.db import models
 
 # Create your models here.
 class Quiz(models.Model):
+    name = models.CharField(max_length=40, unique=True)
+    tags = models.CharField(max_length=40, unique=True)
+
+class Questions(models.Model):
     question = models.TextField()
 
 class Choices(models.Model):
