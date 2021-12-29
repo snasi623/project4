@@ -5,7 +5,7 @@ from .models import Quiz, Question, Answer
 class CreateQuiz(ModelForm):
     class Meta:
         model = Quiz
-        fields = ['name', 'category_name']
+        fields = ['name', 'category_name', 'instructions']
 
 class CreateQuestions(ModelForm):
     quiz = ModelChoiceField(queryset=Quiz.objects.all(), widget=HiddenInput())
