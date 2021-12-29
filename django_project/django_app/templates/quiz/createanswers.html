@@ -1,0 +1,35 @@
+{% extends "quiz/navbar.html" %}
+{% load widget_tweaks %}
+
+{% block main %}
+<div class="container-fluid text-center">   
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Create Question</h2>
+        <div class="form-group">
+            <label for="question">Question</label>
+            {% render_field Question.prompt class="form-control" %}
+        </div>
+        <div class="options">
+            <div class="row">
+                <div class="form-group">
+                    <label for="optionA">Answer Choice</label>
+                    {% render_field form.answer_text class="form-control" %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <button type="button" class="btn">Back</button>
+                </div>
+                <div class="col-sm-3">
+                    <button type="button" class="btn">Option</button>
+                </div>
+                <div class="col-sm-3">
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+            </div>
+        </div>
+        {{ form.question }}
+    </form>
+</div>
+{% endblock %}

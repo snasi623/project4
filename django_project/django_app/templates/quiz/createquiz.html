@@ -1,0 +1,29 @@
+{% extends "quiz/navbar.html" %}
+{% load widget_tweaks %}
+
+{% block main %}
+
+<div class="container-fluid text-center">   
+    <form method="POST">
+        {% csrf_token %}
+
+        <h2>Create Quiz Record</h2>
+        <div class="form-group">
+            <label for="Quiz Name">Enter Quiz Name</label>
+            {% render_field form.name class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="Quiz Category Name">Enter Quiz Category Name</label>
+            {% render_field form.category_name class="form-control" %}
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <button type="submit" class="btn">Back</button>
+            </div>
+            <div class="col-sm-6">
+                <button type="submit" class="btn">Next</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
