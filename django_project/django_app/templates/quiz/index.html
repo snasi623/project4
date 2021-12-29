@@ -23,7 +23,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-6">
-                                <a href="{% url 'quiz' %}">{{ q.name }}</a>
+                                <a href="{% url 'quiz' quiz_pk=q.pk %}">{{ q.name }}</a>
                             </div>
                             <div class="col-sm-4">{{ q.category_name }}</div>
                             <div class="col-sm-2" type="button">

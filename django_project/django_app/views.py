@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import CreateQuiz, CreateQuestions, CreateAnswers
-from .models import Quiz
+from .models import Quiz, Question, Answer
 from django.shortcuts import redirect
 from django.urls import reverse
 
@@ -60,8 +60,16 @@ def createanswers(request, quiz_pk, question_pk):
     context = {'form' : form}
     return render(request, 'quiz/createanswers.html', context)
 
-def quiz(request):
-    context = {}
+def quiz(request, quiz_pk):
+    quiz = Quiz.objects.get(pk=quiz_pk)
+    question = Question.objects.get(quiz_id=quiz_pk)
+    answer = Answer.objects.get(question_id=question.pk)
+
+    context = {
+        'quiz' : quiz,
+        'question' : question,
+        'answer' : answer
+    }
     return render(request, 'quiz/quiz.html', context)
 
 def results(request):
