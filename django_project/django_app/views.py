@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .forms import CreateQuiz
+from django.shortcuts import redirect
+
 
 def index(request):
     context = {}
@@ -8,6 +10,11 @@ def index(request):
 def create(request):
     if request.method == 'POST':
         form = CreateQuiz(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return redirect('home')
+
     else:
         form = CreateQuiz()
 
