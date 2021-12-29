@@ -8,7 +8,9 @@ import pprint
 
 
 def index(request):
-    context = {}
+    quiz = Quiz.objects.all()
+
+    context = { 'quiz' : quiz }
     return render(request, 'quiz/index.html', context)
 
 def createquiz(request):

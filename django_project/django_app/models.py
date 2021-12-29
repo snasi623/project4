@@ -15,4 +15,3 @@ class Answer(models.Model):
 
 
 # class Response:
-
