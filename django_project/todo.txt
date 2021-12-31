@@ -1,4 +1,8 @@
 Add Question
 Add Option
-submit answers on quiz
-fix results tab
+Submit answers on quiz
+Fix results tab
+Edit Button
+Delete Button
+Filter Tags
+Link styles.css

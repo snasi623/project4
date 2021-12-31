@@ -4,12 +4,12 @@
 
 <div class="container-fluid text-center">    
     <div class="row content">
-        <div class="col-sm-2 sidenav">
+        <div class="col-sm-4 sidenav">
             <div class="panel panel-default">
                 <div class="panel-heading"><h4>Categories</h4></div>
-                <div class="panel-body">Tag 1</div>
-                <div class="panel-body">Tag 2</div>
-                <div class="panel-body">Tag 3</div>
+                {% for q in quiz %}
+                <div class="panel-body">{{ q.category_name }}</div>
+                {% endfor %}
             </div>
         </div>
         <div class="col-sm-8 text-left"> 
@@ -33,17 +33,6 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
-        </div>
-        <div class="col-sm-2 sidenav">
-            <h4>Recent Quizzes</h4>
-            <div class="panel panel-default">
-                <div class="panel-heading">Quiz Name</div>
-                <div class="panel-body">Quiz Grade</div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Quiz Name</div>
-                <div class="panel-body">Quiz Grade</div>
             </div>
         </div>
     </div>
