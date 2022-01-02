@@ -5,31 +5,33 @@
 <div class="container-fluid text-center">   
     <form method="POST">
         {% csrf_token %}
-        <h2>Create Question</h2>
+        <h2>Create Answers</h2>
+        {% for q in question %}
         <div class="form-group">
-            <label for="question">Question</label>
-            {% render_field Question.prompt class="form-control" %}
+            <label for="question">{{ q.prompt }}</label>
         </div>
         <div class="options">
             <div class="row">
-                <div class="form-group">
-                    <label for="optionA">Answer Choice</label>
-                    {% render_field form.answer_text class="form-control" %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <button type="button" class="btn">Back</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="btn">Option</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="submit" class="btn">Submit</button>
+                <div class="form-group col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-10"><label for="Answer">Choices</label></div>
+                        <div class="col-sm-2"><button name="option" type="button" class="btn">Option</button></div>
+                    </div>
+                    {% for a in answer %}
+                    <div class="choices">{{ a.answer_text }}</div>
+                    {% endfor %}
+                    {% for f in form %}
+                    <div>{% render_field form.answer_text class="form-control" %}</div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        {{ form.question }}
+        {% endfor %}
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="submit" name="submit" class="btn">Submit</button>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock %}

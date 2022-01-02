@@ -7,8 +7,8 @@
         <div class="col-sm-4 sidenav">
             <div class="panel panel-default">
                 <div class="panel-heading"><h4>Categories</h4></div>
-                {% for q in quiz %}
-                <div class="panel-body">{{ q.category_name }}</div>
+                {% for t in tags %}
+                <div class="panel-body">{{ t }}</div>
                 {% endfor %}
             </div>
         </div>

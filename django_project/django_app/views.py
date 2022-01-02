@@ -9,12 +9,11 @@ import pprint
 
 def index(request):
     quiz = Quiz.objects.all()
-    # category_name = Quiz.category_name
-    # tags = list(set(category_name))
+    tags = list(set(x.category_name for x in quiz))
 
     context = { 
         'quiz' : quiz, 
-        # 'tags' : tags 
+        'tags' : tags 
     }
     return render(request, 'quiz/index.html', context)
 
@@ -33,6 +32,11 @@ def createquiz(request):
     return render(request, 'quiz/createquiz.html', context)
 
 def createquestions(request, quiz_pk):
+    try:
+        question = Question.objects.filter(quiz_id = quiz_pk)
+    except Question.DoesNotExist:
+        question = None
+
     if 'next' in request.POST:
         form = CreateQuestions(request.POST)
         if form.is_valid():
@@ -41,11 +45,11 @@ def createquestions(request, quiz_pk):
     else:
         form = CreateQuestions(initial={'quiz': quiz_pk})
 
-    if 'addquestion' in request.POST:
+    if 'newquestion' in request.POST:
         form = CreateQuestions(request.POST)
         if form.is_valid():
             created_question = form.save()
-            return redirect(reverse('createquestions', args=(quiz_pk, created_question.pk)))
+            return redirect(reverse('createquestions', args=(quiz_pk,)))
     else:
         form = CreateQuestions(initial={'quiz': quiz_pk})
         pprint.pprint(form.errors)
@@ -53,11 +57,14 @@ def createquestions(request, quiz_pk):
     if 'back' in request.POST:
         return redirect(reverse('createquiz', args=(quiz_pk)))
 
-    context = {'form' : form}
+    context = {'form' : form, 'question' : question}
     return render(request, 'quiz/createquestions.html', context)
 
 def createanswers(request, quiz_pk, question_pk):
-    if request.method == 'POST':
+    question = Question.objects.filter(quiz_id = quiz_pk)
+    answer = Question.objects.filter(qestion_id = question_pk,)
+
+    if 'submit' in request.POST:
         form = CreateAnswers(request.POST)
         if form.is_valid():
             form.save()
@@ -67,9 +74,9 @@ def createanswers(request, quiz_pk, question_pk):
             pprint.pprint(form.errors)
 
     else:
-        form = CreateAnswers(initial={'question': question_pk})
+        form = CreateAnswers(initial={'question': quiz_pk})
 
-    context = {'form' : form}
+    context = {'form' : form, 'question' : question, 'answer' : answer}
     return render(request, 'quiz/createanswers.html', context)
 
 def quiz(request, quiz_pk):

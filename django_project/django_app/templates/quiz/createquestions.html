@@ -10,18 +10,16 @@
             <label for="question">Enter Quiz Questions</label>
             {% render_field form.prompt rows="3" class="form-control" %}
         </div>
-        <div class="col-sm-12">
-            <button type="submit" name="newquestion" class="btn">Add Question</button>
-        </div>
         <div class="row">
-            <div class="col-sm-2">{{ question.id }}</div>
-            <div class="col-sm-6">{{ question.prompt }}</div>
+            {% for q in question %}
+            <div class="col-sm-8">{{ q.prompt }}</div>
             <div class="col-sm-2"><button class="btn">Edit</button></div>
             <div class="col-sm-2"><button class="btn">Delete</button></div>
+            {% endfor %}
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <button type="button" name="back" class="btn">Back</button>
+                <button type="submit" name="newquestion" class="btn">Add Question</button>
             </div>
             <div class="col-sm-6">
                 <button type="submit" name="next" class="btn">Next</button>

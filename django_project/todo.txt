@@ -1,4 +1,3 @@
-Add Question
 Add Option
 Submit answers on quiz
 Fix results tab
