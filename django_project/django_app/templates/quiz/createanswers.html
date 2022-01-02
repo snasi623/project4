@@ -15,13 +15,19 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="col-sm-10"><label for="Answer">Choices</label></div>
-                        <div class="col-sm-2"><button name="option" type="button" class="btn">Option</button></div>
                     </div>
                     {% for a in answer %}
-                    <div class="choices">{{ a.answer_text }}</div>
+                    <div class="row">
+                        <div class="choices col-sm-8">{{ a.answer_text }}</div>
+                        <div class="col-sm-2"><button class="btn">Edit</button></div>
+                        <div class="col-sm-2"><button class="btn">Delete</button></div>
+                    </div>
                     {% endfor %}
                     {% for f in form %}
-                    <div>{% render_field form.answer_text class="form-control" %}</div>
+                    <div class="row">
+                        <div>{% render_field form.answer_text class="form-control" %}</div>
+                        <div class="col-sm-2"><button name="option" type="button" class="btn">Option</button></div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
