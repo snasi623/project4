@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Quiz(models.Model):
     name = models.CharField(max_length=40, default='')
     category_name = models.CharField(max_length=40, default='')
@@ -9,11 +8,27 @@ class Quiz(models.Model):
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     prompt = models.TextField(default='')
+    option_1 = models.CharField(max_length=200, default='')
+    option_2 = models.CharField(max_length=200, default='')
+    option_3 = models.CharField(max_length=200, default='')
+    option_4 = models.CharField(max_length=200, default='')
+    correct_option = models.PositiveSmallIntegerField(choices=[
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4)
+    ], default=1)
 
-class Answer(models.Model):
+class QuestionResponse(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    answer_text = models.CharField(max_length=200, default='')
-    is_correct = models.BooleanField(default=False)
+    selected_option = models.PositiveSmallIntegerField(choices=[
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4)
+    ], default=1)
+    student_name = models.CharField(max_length=50, default='')
 
-class Response(models.Model):
-    selected_answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+
+

@@ -11,12 +11,14 @@
             <td>Correct Answers</td>
             <td>Grade</td>
         <th>
+        {% for r in results %}
         <tr>
-            <td>Taker 1</td>
+            <td>{{ r.student_name }}</td>
             <td>9</td>
             <td>9</td>
             <td>100</td>
         </tr>
+        {% endfor %}
         <tr>
             <td>Taker 2</td>
             <td>10</td>

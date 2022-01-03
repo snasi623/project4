@@ -1,7 +1,5 @@
-Add Option
-Submit answers on quiz
+Take Quiz
 Fix results tab
 Edit Button
 Delete Button
-Filter Tags
 Link styles.css

@@ -22,7 +22,6 @@ urlpatterns = [
     path('', quiz_views.index, name='home'),
     path('createquiz/', quiz_views.createquiz, name='createquiz'),
     path('createquestions/<int:quiz_pk>', quiz_views.createquestions, name='createquestions'),
-    path('createanswers/<int:quiz_pk>/<int:question_pk>/', quiz_views.createanswers, name='createanswers'),
     path('quiz/<int:quiz_pk>', quiz_views.quiz, name='quiz'),
     path('results/', quiz_views.results, name='results'),
     path('admin/', admin.site.urls),

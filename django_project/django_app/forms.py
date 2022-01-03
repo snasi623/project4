@@ -1,6 +1,6 @@
 from django.forms import ModelForm, ModelChoiceField, MultipleHiddenInput
 from django.forms.widgets import HiddenInput
-from .models import Quiz, Question, Answer
+from .models import Quiz, Question, QuestionResponse
 
 class CreateQuiz(ModelForm):
     class Meta:
@@ -12,11 +12,12 @@ class CreateQuestions(ModelForm):
 
     class Meta:
         model = Question
-        fields = ['quiz', 'prompt']
+        fields = ['quiz', 'prompt', 'option_1', 'option_2', 'option_3', 'option_4', 'correct_option']
 
-class CreateAnswers(ModelForm):
+class TakeQuiz(ModelForm):
+    quiz = ModelChoiceField(queryset=Quiz.objects.all(), widget=HiddenInput())
     question = ModelChoiceField(queryset=Question.objects.all(), widget=HiddenInput())
 
     class Meta:
-        model = Answer
-        fields = ['question', 'answer_text']
+        model = QuestionResponse
+        fields = ['quiz', 'question', 'selected_option', 'student_name']

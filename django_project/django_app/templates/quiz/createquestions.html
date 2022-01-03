@@ -9,10 +9,16 @@
         <div class="form-group">
             <label for="question">Enter Quiz Questions</label>
             {% render_field form.prompt rows="3" class="form-control" %}
+            {% render_field form.option_1 class="form-control" %}
+            {% render_field form.option_2 class="form-control" %}
+            {% render_field form.option_3 class="form-control" %}
+            {% render_field form.option_4 class="form-control" %}
+            {% render_field form.correct_option rows="3" class="form-control" %}
         </div>
         <div class="row">
             {% for q in question %}
-            <div class="col-sm-8">{{ q.prompt }}</div>
+            <div class="col-sm-6">{{ q.prompt }}</div>
+            <div class="col-sm-2">{{ q.correct_option }}</div>
             <div class="col-sm-2"><button class="btn">Edit</button></div>
             <div class="col-sm-2"><button class="btn">Delete</button></div>
             {% endfor %}

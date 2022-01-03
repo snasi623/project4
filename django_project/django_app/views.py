@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .forms import CreateQuiz, CreateQuestions, CreateAnswers
-from .models import Quiz, Question, Answer
+from .forms import CreateQuiz, CreateQuestions, TakeQuiz
+from .models import Quiz, Question, QuestionResponse
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.forms import formset_factory
 
 import pprint
 
@@ -41,7 +42,7 @@ def createquestions(request, quiz_pk):
         form = CreateQuestions(request.POST)
         if form.is_valid():
             created_question = form.save()
-            return redirect(reverse('createanswers', args=(quiz_pk, created_question.pk)))
+            return redirect(reverse('home'))
     else:
         form = CreateQuestions(initial={'quiz': quiz_pk})
 
@@ -52,45 +53,40 @@ def createquestions(request, quiz_pk):
             return redirect(reverse('createquestions', args=(quiz_pk,)))
     else:
         form = CreateQuestions(initial={'quiz': quiz_pk})
-        pprint.pprint(form.errors)
-
-    if 'back' in request.POST:
-        return redirect(reverse('createquiz', args=(quiz_pk)))
 
     context = {'form' : form, 'question' : question}
     return render(request, 'quiz/createquestions.html', context)
 
-def createanswers(request, quiz_pk, question_pk):
-    question = Question.objects.filter(quiz_id = quiz_pk)
-    answer = Question.objects.filter(qestion_id = question_pk,)
-
-    if 'submit' in request.POST:
-        form = CreateAnswers(request.POST)
-        if form.is_valid():
-            form.save()
-
-            return redirect('home')
-        else:
-            pprint.pprint(form.errors)
-
-    else:
-        form = CreateAnswers(initial={'question': quiz_pk})
-
-    context = {'form' : form, 'question' : question, 'answer' : answer}
-    return render(request, 'quiz/createanswers.html', context)
-
 def quiz(request, quiz_pk):
     quiz = Quiz.objects.get(pk=quiz_pk)
-    question = Question.objects.get(quiz_id=quiz_pk)
-    answer = Answer.objects.get(question_id=question.pk)
+    question = Question.objects.filter(quiz_id=quiz_pk)
+
+    try:
+        question = Question.objects.filter(quiz_id = quiz_pk)
+    except Question.DoesNotExist:
+        question = None
+
+    formset = formset_factory(QuestionResponse)()
+    
+    if 'submit' in request.POST:
+        form = TakeQuiz(request.POST)
+        if form.is_valid():
+            return redirect(reverse('results'))
+        else: 
+            pprint.pprint(form.errors)
+    else:
+        form = TakeQuiz(initial={'quiz': quiz_pk})
 
     context = {
+        'form' : form,
         'quiz' : quiz,
+        'formset': formset,
         'question' : question,
-        'answer' : answer
     }
     return render(request, 'quiz/quiz.html', context)
 
-def results(request):
-    context = {}
+def results(request, quiz_id):
+    results = QuestionResponse.objects.get(pk=quiz_id)
+
+    context = {'results' : results}
     return render(request, 'quiz/results.html', context)

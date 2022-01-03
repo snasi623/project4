@@ -1,21 +1,47 @@
 {% extends "quiz/navbar.html" %}
+{% load widget_tweaks %}
 
 {% block main %}
 
 <div class="container-fluid text-center">    
     <form method="post">
+        {{ formset.management_form }}
+
         {% csrf_token %}
+        {% for q in question %}
+        <div>
+            <label for="studentname">Student Name: </label>
+            {% render_field form.student_name class="form-control" %}
+        </div>
         <div class="panel panel-default questions">
-            <div class="panel-heading">{{ question.prompt }}</div>
+            <div class="panel-heading">{{ q.prompt }}</div>
             <div class="panel-body">
-                <input type="radio">{{ answer.answer_text }}</input>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="radio">{{ q.option_1 }}</input>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="radio">{{ q.option_2 }}</input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="radio">{{ q.option_3 }}</input>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="radio">{{ q.option_4 }}</input>
+                    </div>
+                </div>
             </div> &nbsp;
         </div>
+        {{ formset.as_p }}
+        {% endfor %}
         <div class="row">
             <div class="col-sm-12">
-                <button class="btn" type="submit">Submit Quiz</button>
+                <button class="btn" name="submit" type="submit">Submit Quiz</button>
             </div>
         </div>
+        {{ form.quiz }}
     </form>
 </div>
 {% endblock %}
