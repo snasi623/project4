@@ -3,7 +3,8 @@ from .forms import CreateQuiz, CreateQuestions, TakeQuiz
 from .models import Quiz, Question, QuestionResponse
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.forms import formset_factory
+from django.forms import modelformset_factory
+from django.forms.models import model_to_dict
 
 import pprint
 
@@ -59,29 +60,37 @@ def createquestions(request, quiz_pk):
 
 def quiz(request, quiz_pk):
     quiz = Quiz.objects.get(pk=quiz_pk)
-    question = Question.objects.filter(quiz_id=quiz_pk)
 
     try:
-        question = Question.objects.filter(quiz_id = quiz_pk)
+        questions = Question.objects.filter(quiz_id = quiz_pk)
     except Question.DoesNotExist:
-        question = None
+        questions = None
 
-    formset = formset_factory(QuestionResponse)()
-    
+    initial_responses = [] 
+    for q in questions:
+        initial_responses.append(model_to_dict(QuestionResponse(
+            question = q, 
+            selected_option = 1,
+            student_name = "Sean"
+        )))
+    pprint.pprint(initial_responses)
+
     if 'submit' in request.POST:
-        form = TakeQuiz(request.POST)
-        if form.is_valid():
+        QuizFormSet = modelformset_factory(TakeQuiz)
+        formset = QuizFormSet(request.POST)   
+        if formset.is_valid():
             return redirect(reverse('results'))
         else: 
-            pprint.pprint(form.errors)
+            pprint.pprint(formset.errors)
     else:
-        form = TakeQuiz(initial={'quiz': quiz_pk})
+        QuizFormSet = modelformset_factory(QuestionResponse, form=TakeQuiz, extra=len(initial_responses))
+        formset = QuizFormSet(queryset=QuestionResponse.objects.none(), initial=initial_responses)
 
     context = {
-        'form' : form,
         'quiz' : quiz,
-        'formset': formset,
-        'question' : question,
+        'formset' : formset,
+        'questions' : {x.pk:x for x in questions},
+        'initial_responses' : initial_responses,
     }
     return render(request, 'quiz/quiz.html', context)
 

@@ -2,4 +2,3 @@ Take Quiz
 Fix results tab
 Edit Button
 Delete Button
-Link styles.css

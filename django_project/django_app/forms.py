@@ -15,9 +15,8 @@ class CreateQuestions(ModelForm):
         fields = ['quiz', 'prompt', 'option_1', 'option_2', 'option_3', 'option_4', 'correct_option']
 
 class TakeQuiz(ModelForm):
-    quiz = ModelChoiceField(queryset=Quiz.objects.all(), widget=HiddenInput())
     question = ModelChoiceField(queryset=Question.objects.all(), widget=HiddenInput())
 
     class Meta:
         model = QuestionResponse
-        fields = ['quiz', 'question', 'selected_option', 'student_name']
+        fields = ['question', 'selected_option', 'student_name']
