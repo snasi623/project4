@@ -46,7 +46,7 @@ def createquestions(request, quiz_pk):
     if 'next' in request.POST:
         form = CreateQuestions(request.POST)
         if form.is_valid():
-            created_question = form.save()
+            form.save()
             return redirect(reverse('home'))
     else:
         form = CreateQuestions(initial={'quiz': quiz_pk})
@@ -54,7 +54,7 @@ def createquestions(request, quiz_pk):
     if 'newquestion' in request.POST:
         form = CreateQuestions(request.POST)
         if form.is_valid():
-            created_question = form.save()
+            form.save()
             return redirect(reverse('createquestions', args=(quiz_pk,)))
     else:
         form = CreateQuestions(initial={'quiz': quiz_pk})
@@ -77,14 +77,16 @@ def quiz(request, quiz_pk):
             selected_option = 1,
             student_name = "Sean"
         )))
-    pprint.pprint(initial_responses)
 
     if 'submit' in request.POST:
-        QuizFormSet = modelformset_factory(TakeQuiz)
-        formset = QuizFormSet(request.POST)   
+        QuizFormSet = modelformset_factory(QuestionResponse, form=TakeQuiz)
+        formset = QuizFormSet(request.POST)  
+
         if formset.is_valid():
+            formset.save()
             return redirect(reverse('results'))
         else: 
+            print('There was an error')
             pprint.pprint(formset.errors)
     else:
         QuizFormSet = modelformset_factory(QuestionResponse, form=TakeQuiz, extra=len(initial_responses))
