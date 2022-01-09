@@ -9,27 +9,27 @@
         {% csrf_token %}
         <div>
             <label for="studentname">Student Name: </label>
-            {% render_field form.student_name class="form-control" %}
+            {% render_field r.student_name class="form-control" %}
         </div>
         {% for r in formset %}
-        {% with current_questionid=questions.r.question.value %}
+        {% with current_question=questions|get_item:r.question.value %}
         <div class="panel panel-default questions">
-            <div class="panel-heading">{{ questions.current_questionid.prompt }}</div>
+            <div class="panel-heading">{{ current_question.prompt }}</div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        <p>1. {{ r.question.option_1 }}</p> 
+                        <p>1. {{ current_question.option_1 }}</p> 
                     </div>
                     <div class="col-sm-6">
-                        2. {{ r.question.option_2 }}
+                        <p>2. {{ current_question.option_2 }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        3. {{ r.question.option_3 }}
+                        <p>3. {{ current_question.option_3 }}</p>
                     </div>
                     <div class="col-sm-6">
-                        4. {{ r.question.option_4 }}
+                        <p>4. {{ current_question.option_4 }}</p>
                     </div>
                 </div>
                 {% render_field r.selected_option %}

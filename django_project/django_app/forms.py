@@ -1,6 +1,8 @@
 from django.forms import ModelForm, ModelChoiceField, MultipleHiddenInput
 from django.forms.widgets import HiddenInput
 from .models import Quiz, Question, QuestionResponse
+from django.forms.models import inlineformset_factory
+
 
 class CreateQuiz(ModelForm):
     class Meta:
@@ -20,3 +22,6 @@ class TakeQuiz(ModelForm):
     class Meta:
         model = QuestionResponse
         fields = ['question', 'selected_option', 'student_name']
+
+# QuizResponseFormSet = inlineformset_factory(QuestionResponse, QuestionResponse, fields =['question', 'selected_option', 'student_name',])
+

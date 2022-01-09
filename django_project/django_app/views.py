@@ -5,9 +5,13 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.forms import modelformset_factory
 from django.forms.models import model_to_dict
+from django.template.defaulttags import register
 
 import pprint
 
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 def index(request):
     quiz = Quiz.objects.all()
