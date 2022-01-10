@@ -8,8 +8,8 @@
         {{ formset.management_form }}
         {% csrf_token %}
         <div>
-            <label for="studentname">Student Name: </label>
-            {% render_field formset.student_name class="form-control" %}
+            <h3>{{ quiz.name }}</h3>
+            <p>For each question, select the multiple choice option that best fits the answer to the question and provide your name. Please note, the student name <strong>must be the same for all questions you submit</strong> or else the results will not be correct.</p>
         </div>
         {% for r in formset %}
         {% with current_question=questions|get_item:r.question.value %}
@@ -32,10 +32,18 @@
                         <p>4. {{ current_question.option_4 }}</p>
                     </div>
                 </div>
-                {% render_field r.selected_option %}
-                {% render_field r.student_name %}
+            </div> 
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6">Choose Option: </div>
+                    <div class="col-sm-6">Student Name: </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">{% render_field r.selected_option %}</div>
+                    <div class="col-sm-6">{% render_field r.student_name %}</div>
+                </div>
                 {% render_field r.question %}
-            </div> &nbsp;
+            </div>
         </div>
         {% endwith %}
         {% endfor %}

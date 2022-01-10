@@ -74,13 +74,13 @@ def quiz(request, quiz_pk):
     for q in questions:
         initial_responses.append(model_to_dict(QuestionResponse(
             question = q, 
-            selected_option = 1,
-            student_name = "Sean"
+            selected_option = QuestionResponse.selected_option,
+            student_name = QuestionResponse.student_name
         )))
 
     if 'submit' in request.POST:
         QuizFormSet = modelformset_factory(QuestionResponse, form=TakeQuiz)
-        formset = QuizFormSet(request.POST)  
+        formset = QuizFormSet(request.POST)
 
         if formset.is_valid():
             formset.save()

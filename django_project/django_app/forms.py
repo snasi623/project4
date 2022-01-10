@@ -22,6 +22,3 @@ class TakeQuiz(ModelForm):
     class Meta:
         model = QuestionResponse
         fields = ['question', 'selected_option', 'student_name']
-
-# QuizResponseFormSet = inlineformset_factory(QuestionResponse, QuestionResponse, fields =['question', 'selected_option', 'student_name',])
-
