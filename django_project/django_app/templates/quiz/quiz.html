@@ -43,6 +43,7 @@
                     <div class="col-sm-6">{% render_field r.student_name %}</div>
                 </div>
                 {% render_field r.question %}
+                {{ r.submission_token.as_hidden }}
             </div>
         </div>
         {% endwith %}

@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.forms import modelformset_factory
 from django.forms.models import model_to_dict
 from django.template.defaulttags import register
+import uuid
 
 import pprint
 
@@ -70,12 +71,14 @@ def quiz(request, quiz_pk):
     except Question.DoesNotExist:
         questions = None
 
+    submission_token = str(uuid.uuid4())
     initial_responses = [] 
     for q in questions:
         initial_responses.append(model_to_dict(QuestionResponse(
             question = q, 
-            selected_option = QuestionResponse.selected_option,
-            student_name = QuestionResponse.student_name
+            selected_option = 1,
+            student_name = '',
+            submission_token = submission_token
         )))
 
     if 'submit' in request.POST:
@@ -84,7 +87,7 @@ def quiz(request, quiz_pk):
 
         if formset.is_valid():
             formset.save()
-            return redirect(reverse('results'))
+            return redirect(reverse('results', args=(formset[0].instance.submission_token,)))
         else: 
             print('There was an error')
             pprint.pprint(formset.errors)
@@ -97,11 +100,20 @@ def quiz(request, quiz_pk):
         'formset' : formset,
         'questions' : {x.pk:x for x in questions},
         'initial_responses' : initial_responses,
+        'submission_token' : submission_token,
     }
     return render(request, 'quiz/quiz.html', context)
 
-def results(request, quiz_id):
-    results = QuestionResponse.objects.get(pk=quiz_id)
+def results(request, submission_token):
+    results = QuestionResponse.objects.filter(submission_token=submission_token)
+    pprint.pprint(results)
 
     context = {'results' : results}
     return render(request, 'quiz/results.html', context)
+
+def listresults(request, submission_token):
+    results = QuestionResponse.objects.filter(submission_token=submission_token)
+    pprint.pprint(results)
+
+    context = {'results' : results}
+    return render(request, 'quiz/listresults.html', context)

@@ -4,28 +4,7 @@
 
 <div class="container-fluid text-center">    
     <h2>Results</h2>
-    <p></p>
-    <table class="table">
-        <th>
-            <td>Total Answers</td>
-            <td>Correct Answers</td>
-            <td>Grade</td>
-        <th>
-        {% for r in results %}
-        <tr>
-            <td>{{ r.student_name }}</td>
-            <td>9</td>
-            <td>9</td>
-            <td>100</td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td>Taker 2</td>
-            <td>10</td>
-            <td>5</td>
-            <td>50</td>
-        </tr>
-    <table>
+    <div>You got 4 questions out of 5 correct. Your score is 80%</div>    
 </div>
 
 {% endblock %}

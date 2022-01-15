@@ -23,6 +23,7 @@ urlpatterns = [
     path('createquiz/', quiz_views.createquiz, name='createquiz'),
     path('createquestions/<int:quiz_pk>', quiz_views.createquestions, name='createquestions'),
     path('quiz/<int:quiz_pk>', quiz_views.quiz, name='quiz'),
-    path('results/<int:quiz_pk>', quiz_views.results, name='results'),
+    path('results/<str:submission_token>', quiz_views.results, name='results'),
+    path('listresults/', quiz_views.listresults, name='listresults'),
     path('admin/', admin.site.urls),
 ]

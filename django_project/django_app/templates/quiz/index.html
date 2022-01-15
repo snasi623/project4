@@ -26,9 +26,6 @@
                                 <a href="{% url 'quiz' quiz_pk=q.pk %}">{{ q.name }}</a>
                             </div>
                             <div class="col-sm-4">{{ q.category_name }}</div>
-                            <div class="col-sm-2" type="button">
-                                <a href="{% url 'results' quiz_pk=q.pk %}">Results</a>
-                            </div>
                         </div>
                     </div>
                 </div>

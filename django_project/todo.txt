@@ -1,4 +1,3 @@
-Get Student Name to be blank initially
-Fix results tab
-Edit Button
-Delete Button
+Results view
+list results view
+CSS

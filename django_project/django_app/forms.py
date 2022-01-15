@@ -21,4 +21,4 @@ class TakeQuiz(ModelForm):
 
     class Meta:
         model = QuestionResponse
-        fields = ['question', 'selected_option', 'student_name']
+        fields = ['question', 'selected_option', 'student_name', 'submission_token']

@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 class Quiz(models.Model):
     name = models.CharField(max_length=40, default='')
@@ -28,3 +29,4 @@ class QuestionResponse(models.Model):
         (4, 4)
     ], default=1)
     student_name = models.CharField(max_length=50, default='')
+    submission_token = models.CharField(max_length=255, default=str(uuid.uuid4()))
