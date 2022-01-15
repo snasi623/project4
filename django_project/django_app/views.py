@@ -108,6 +108,9 @@ def results(request, submission_token):
     results = QuestionResponse.objects.filter(submission_token=submission_token)
     pprint.pprint(results)
 
+    # quiz_questions = Question.objects.count(submission_token=submission_token)
+    # for r in results:
+
     context = {'results' : results}
     return render(request, 'quiz/results.html', context)
 

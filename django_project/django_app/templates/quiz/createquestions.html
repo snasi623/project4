@@ -7,20 +7,51 @@
         {% csrf_token %}
         <h2>Create Question</h2>
         <div class="form-group">
-            <label for="question">Enter Quiz Questions</label>
-            {% render_field form.prompt rows="3" class="form-control" %}
-            {% render_field form.option_1 class="form-control" %}
-            {% render_field form.option_2 class="form-control" %}
-            {% render_field form.option_3 class="form-control" %}
-            {% render_field form.option_4 class="form-control" %}
-            {% render_field form.correct_option rows="3" class="form-control" %}
+            <div class="question">
+                <label for="question">Enter Quiz Questions</label>
+                {% render_field form.prompt rows="3" class="form-control" %}
+            </div>
+            <div class="options">
+                <div class="row">
+                    <div class="col-sm-4"><p><strong>Option 1:</strong></p></div>
+                    <div class="col-sm-8">{% render_field form.option_1 class="form-control" %}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><p><strong>Option 2:</strong></p></div>
+                    <div class="col-sm-8">{% render_field form.option_2 class="form-control" %}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><p><strong>Option 3:</strong></p></div>
+                    <div class="col-sm-8">{% render_field form.option_3 class="form-control" %}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><p><strong>Option 4:</strong></p></div>
+                    <div class="col-sm-8">{% render_field form.option_4 class="form-control" %}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><p><strong>Correct Answer:</strong></p></div>
+                    <div class="col-sm-8">{% render_field form.correct_option rows="3" class="form-control" %}</div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-            {% for q in question %}
-            <div class="col-sm-8">{{ q.prompt }}</div>
-            <div class="col-sm-4">{{ q.correct_option }}</div>
-            {% endfor %}
+        {% for q in question %}
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="col-sm-11">{{ q.prompt }}</div>
+                <div class="col-sm-1">{{ q.correct_option }}</div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">1. {{ q.option_1 }}</div>
+                    <div class="col-sm-6">2. {{ q.option_2 }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">3. {{ q.option_3 }}</div>
+                    <div class="col-sm-6">4. {{ q.option_4 }}</div>
+                </div>
+            </div>
         </div>
+        {% endfor %}
         <div class="row">
             <div class="col-sm-6">
                 <button type="submit" name="newquestion" class="btn">Add Question</button>

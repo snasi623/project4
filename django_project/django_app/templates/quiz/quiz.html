@@ -8,12 +8,12 @@
         {{ formset.management_form }}
         {% csrf_token %}
         <div>
-            <h3>{{ quiz.name }}</h3>
-            <p>For each question, select the multiple choice option that best fits the answer to the question and provide your name. Please note, the student name <strong>must be the same for all questions you submit</strong> or else the results will not be correct.</p>
+            <h2>{{ quiz.name }}</h2>
+            <p>{{ quiz.instructions }} <br> Please note, the student name <strong>must be the same for all questions you submit</strong> or else the results will not be correct.</p>
         </div>
         {% for r in formset %}
         {% with current_question=questions|get_item:r.question.value %}
-        <div class="panel panel-default questions">
+        <div class="panel panel-info questions">
             <div class="panel-heading">{{ current_question.prompt }}</div>
             <div class="panel-body">
                 <div class="row">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div> 
-            <div class="panel-footer">
+            <div class="panel-footer panel-info">
                 <div class="row">
                     <div class="col-sm-6">Choose Option: </div>
                     <div class="col-sm-6">Student Name: </div>

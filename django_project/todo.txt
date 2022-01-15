@@ -1,3 +1,4 @@
 Results view
 list results view
-CSS
+fix margin on body
+fix navbar collapse issue
