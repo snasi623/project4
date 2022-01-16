@@ -9,7 +9,7 @@
         {% csrf_token %}
         <div>
             <h2>{{ quiz.name }}</h2>
-            <p>{{ quiz.instructions }} <br> Please note, the student name <strong>must be the same for all questions you submit</strong> or else the results will not be correct.</p>
+            <p>{{ quiz.instructions }} Please note, the student name <strong>must be the same for all questions you submit</strong> or else the results will not be correct.</p>
         </div>
         {% for r in formset %}
         {% with current_question=questions|get_item:r.question.value %}
@@ -33,7 +33,8 @@
                     </div>
                 </div>
             </div> 
-            <div class="panel-footer panel-info">
+            <hr>
+            <div class="panel-body panel-info">
                 <div class="row">
                     <div class="col-sm-6">Choose Option: </div>
                     <div class="col-sm-6">Student Name: </div>

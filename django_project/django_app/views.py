@@ -106,17 +106,26 @@ def quiz(request, quiz_pk):
 
 def results(request, submission_token):
     results = QuestionResponse.objects.filter(submission_token=submission_token)
-    pprint.pprint(results)
 
-    # quiz_questions = Question.objects.count(submission_token=submission_token)
-    # for r in results:
+    num_correct = 0
+    for r in results:
+        if r.selected_option == r.question.correct_option:
+            num_correct += 1
 
-    context = {'results' : results}
+    grade = round((num_correct / len(results)) * 100)
+
+    context = {'len_results' : len(results), 'num_correct' : num_correct, 'grade' : grade}
     return render(request, 'quiz/results.html', context)
 
 def listresults(request, submission_token):
     results = QuestionResponse.objects.filter(submission_token=submission_token)
-    pprint.pprint(results)
 
-    context = {'results' : results}
+    num_correct = 0
+    for r in results:
+        if r.selected_option == r.question.correct_option:
+            num_correct += 1
+
+    grade = round((num_correct / len(results)) * 100)
+
+    context = {'len_results' : len(results), 'num_correct' : num_correct, 'grade' : grade, 'results': results}
     return render(request, 'quiz/listresults.html', context)

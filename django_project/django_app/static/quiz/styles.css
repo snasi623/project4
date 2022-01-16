@@ -15,9 +15,8 @@ body {
         background-position: 0% 50%;
     }
 }
-.panel-footer.panel-custom {
-    background: red;
-    color: white;
+.panel > hr {
+    margin: 5px;
 }
 div.navbar {
     margin: 0;
