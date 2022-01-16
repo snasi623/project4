@@ -21,6 +21,7 @@ class Question(models.Model):
     ], default=1)
 
 class QuestionResponse(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     selected_option = models.PositiveSmallIntegerField(choices=[
         (1, 1),

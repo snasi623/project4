@@ -75,6 +75,7 @@ def quiz(request, quiz_pk):
     initial_responses = [] 
     for q in questions:
         initial_responses.append(model_to_dict(QuestionResponse(
+            quiz = quiz,
             question = q, 
             selected_option = 1,
             student_name = '',
@@ -117,15 +118,10 @@ def results(request, submission_token):
     context = {'len_results' : len(results), 'num_correct' : num_correct, 'grade' : grade}
     return render(request, 'quiz/results.html', context)
 
-def listresults(request, submission_token):
-    results = QuestionResponse.objects.filter(submission_token=submission_token)
+def listresults(request, quiz_pk):
+    results = QuestionResponse.objects.filter(quiz_id = quiz_pk).values('submission_token').distinct()
 
-    num_correct = 0
-    for r in results:
-        if r.selected_option == r.question.correct_option:
-            num_correct += 1
+    pprint.pprint(results)
 
-    grade = round((num_correct / len(results)) * 100)
-
-    context = {'len_results' : len(results), 'num_correct' : num_correct, 'grade' : grade, 'results': results}
+    context = {}
     return render(request, 'quiz/listresults.html', context)

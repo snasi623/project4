@@ -18,7 +18,8 @@ class CreateQuestions(ModelForm):
 
 class TakeQuiz(ModelForm):
     question = ModelChoiceField(queryset=Question.objects.all(), widget=HiddenInput())
+    quiz = ModelChoiceField(queryset=Quiz.objects.all(), widget=HiddenInput())
 
     class Meta:
         model = QuestionResponse
-        fields = ['question', 'selected_option', 'student_name', 'submission_token']
+        fields = ['quiz', 'question', 'selected_option', 'student_name', 'submission_token']
