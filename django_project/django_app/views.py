@@ -136,8 +136,5 @@ def listresults(request, quiz_pk):
             dictionary[r.submission_token]['num_correct'] += int(is_correct)
             dictionary[r.submission_token]['grade'] = round((dictionary[r.submission_token]['num_correct'] / dictionary[r.submission_token]['len_results']) * 100)
 
-
-    pprint.pprint(dictionary)
-
     context = {'dictionary' : dictionary}
     return render(request, 'quiz/listresults.html', context)
