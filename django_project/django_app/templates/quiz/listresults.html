@@ -11,12 +11,14 @@
             <td>Correct Answers</td>
             <td>Grade</td>
         <th>
+        {% for key, val in dictionary.items %}
         <tr>
-            <td>{{ results.name }}</td>
-            <td>{{ len_results }}</td>
-            <td>{{ num_correct }}</td>
-            <td>{{ grade }}</td>
+            <td>{{ val.student_name }}</td>
+            <td>{{ val.len_results }}</td>
+            <td>{{ val.num_correct }}</td>
+            <td>{{ val.grade }}%</td>
         </tr>
+        {% endfor %}
     <table>
 </div>
 

@@ -119,9 +119,25 @@ def results(request, submission_token):
     return render(request, 'quiz/results.html', context)
 
 def listresults(request, quiz_pk):
-    results = QuestionResponse.objects.filter(quiz_id = quiz_pk).values('submission_token').distinct()
+    results = QuestionResponse.objects.filter(quiz_id = quiz_pk)
 
-    pprint.pprint(results)
+    dictionary = {}
+    for r in results: 
+        is_correct = r.selected_option == r.question.correct_option
+        if r.submission_token not in dictionary:
+            dictionary[r.submission_token] = {
+                'len_results': 1,
+                'num_correct': int(is_correct),
+                'student_name': r.student_name,
+                'grade': round((int(is_correct) / 1) * 100)
+            }
+        else:
+            dictionary[r.submission_token]['len_results'] += 1
+            dictionary[r.submission_token]['num_correct'] += int(is_correct)
+            dictionary[r.submission_token]['grade'] = round((dictionary[r.submission_token]['num_correct'] / dictionary[r.submission_token]['len_results']) * 100)
 
-    context = {}
+
+    pprint.pprint(dictionary)
+
+    context = {'dictionary' : dictionary}
     return render(request, 'quiz/listresults.html', context)

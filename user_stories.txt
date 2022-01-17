@@ -1,3 +1,3 @@
 As a teacher, I want to create practice quizzes for my students online and see their grades so that I can better understand where they are struggling to understand the material
 As a student, I want an easy to use online quiz application so that I can better prepare for my upcoming tests at home
-As an individual practicing another language, I want an online quiz application that will help me practice my skills when I am not able to get hands on experience in the field
+As a trivia afficionado, I want an easy online quiz application that will allow me to create multiple choice quizzes that I can challenge my friends to take. 
