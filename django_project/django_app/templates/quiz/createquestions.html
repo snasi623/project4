@@ -34,6 +34,14 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <button type="submit" name="newquestion" class="btn">Add Question</button>
+            </div>
+            <div class="col-sm-6">
+                <button type="submit" name="next" class="btn">Next</button>
+            </div>
+        </div>
         {% for q in question %}
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -52,14 +60,6 @@
             </div>
         </div>
         {% endfor %}
-        <div class="row">
-            <div class="col-sm-6">
-                <button type="submit" name="newquestion" class="btn">Add Question</button>
-            </div>
-            <div class="col-sm-6">
-                <button type="submit" name="next" class="btn">Next</button>
-            </div>
-        </div>
         {{ form.quiz }}
     </form>
 </div>
