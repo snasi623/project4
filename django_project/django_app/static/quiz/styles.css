@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(-45deg, #2b5efe, #2787e6, #27e6df, #2bfebb);
+    background: linear-gradient(-45deg, #5479EB, #58A7F5, #58F5F0, #54EBBB);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     margin-bottom: 20px;
@@ -77,12 +77,22 @@ p {
 input {
     color: black;
 }
+.navbar-default {
+    background-color: #5BC0DE;
+}
+.navbar-default .navbar-brand {
+    color: #fff
+}
+.navbar-default .navbar-nav>li>a {
+    color: #fff
+}
+.panel-info>.panel-heading {
+    background-color: #5BC0DE;
+    color: white;
+}
 @media (max-width: 767px) {
     .sidenav {
         display: none;    
-    }
-    .panel-body .col-sm-4 {
-        display: none;
     }
 }
 @media (min-width: 767px) {

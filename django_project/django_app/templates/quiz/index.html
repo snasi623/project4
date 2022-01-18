@@ -21,11 +21,11 @@
                 <div class="panel panel-info">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm- col-xs-10">
+                            <div class="col-sm-6">
                                 <a href="{% url 'quiz' quiz_pk=q.pk %}">{{ q.name }}</a>
                             </div>
                             <div class="col-sm-4">{{ q.category_name }}</div>
-                            <div class="col-sm-2 col-xs-10"><a href="{% url 'listresults' quiz_pk=q.pk %}">Results</a></div>
+                            <div class="col-sm-2"><a href="{% url 'listresults' quiz_pk=q.pk %}">Results</a></div>
                         </div>
                     </div>
                 </div>

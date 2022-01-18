@@ -11,11 +11,12 @@
             <h2>{{ quiz.name }}</h2>
             <p>{{ quiz.instructions }}</p>
         </div>
+        <hr>
         <label for="student_name_real">Student Name:</label><input type="text" id="student_name_real" placeholder="Enter Student Name Here" required="required">
         {% for r in formset %}
         {% with current_question=questions|get_item:r.question.value %}
         <div class="panel panel-info questions">
-            <div class="panel-heading">{{ current_question.prompt }}</div>
+            <div class="panel-heading"><h4>{{ current_question.prompt }}</h4></div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-6">
