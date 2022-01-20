@@ -45,8 +45,8 @@
         {% for q in question %}
         <div class="card text-dark bg-info mb-3">
             <div class="card-header">
-                <div class="col-sm-11">{{ q.prompt }}</div>
-                <div class="col-sm-1">{{ q.correct_option }}</div>
+                <div><h5>{{ q.prompt }}</h5></div>
+                <div>Correct Answer: {{ q.correct_option }}</div>
             </div>
             <div class="card-body">
                 <div class="row">

@@ -13,17 +13,20 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-default" style="background-color: #0dcaf0;" role="navigation">
-                <a class="navbar-brand" href="{% url 'home' %}">QuizzApp</a>
+            <nav class="navbar navbar-expand-lg navbar-light" role="navigation">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{% url 'home' %}">QuizzApp</a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'createquiz' %}">Create Quiz</a></li>
-                    </ul>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarScroll">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'createquiz' %}">Create Quiz</a></li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </header>

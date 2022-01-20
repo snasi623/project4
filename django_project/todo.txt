@@ -1,2 +1,0 @@
-fix margin on body
-fix navbar collapse issue
