@@ -32,7 +32,6 @@ div.navbar {
 }
 .sidenav {
     padding: 0;
-    margin-left: 5px;
 }
 div.text-left {
     padding: 20px;
@@ -93,6 +92,9 @@ input {
 @media (max-width: 767px) {
     .sidenav {
         display: none;    
+    }
+    .text-left .panel-body {
+        text-align: center;
     }
 }
 @media (min-width: 767px) {
