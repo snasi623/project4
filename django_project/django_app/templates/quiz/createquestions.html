@@ -36,19 +36,19 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <button type="submit" name="newquestion" class="btn">Add Question</button>
+                <button type="submit" name="newquestion" class="btn btn-dark">Add Question</button>
             </div>
             <div class="col-sm-6">
-                <button type="submit" name="next" class="btn">Next</button>
+                <button type="submit" name="next" class="btn btn-dark">Next</button>
             </div>
         </div>
         {% for q in question %}
-        <div class="panel panel-info">
-            <div class="panel-heading">
+        <div class="card text-dark bg-info mb-3">
+            <div class="card-header">
                 <div class="col-sm-11">{{ q.prompt }}</div>
                 <div class="col-sm-1">{{ q.correct_option }}</div>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">1. {{ q.option_1 }}</div>
                     <div class="col-sm-6">2. {{ q.option_2 }}</div>

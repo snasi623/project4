@@ -3,8 +3,8 @@ body {
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     margin-bottom: 20px;
-    color: white;
-    text-shadow: 1px 1px 3px black;
+    /* color: white;
+    text-shadow: 1px 1px 3px black; */
 }
 @keyframes gradient {
     0% {
@@ -17,19 +17,6 @@ body {
         background-position: 0% 50%;
     }
 }
-.container {
-    margin-left: 0;
-    margin-right: 0;
-}
-.panel > hr {
-    margin: 5px;
-}
-.navbar {
-    text-shadow: none;
-}
-div.navbar {
-    margin: 0;
-}
 .sidenav {
     padding: 0;
 }
@@ -40,16 +27,6 @@ h1, h2 {
     margin: 0;
     padding: 20px;
     text-align: center;
-}
-.panel {
-    color: black;
-    text-shadow: none;
-}
-.panel-heading {
-    padding: 25px
-}
-.panel-footer {
-    padding: 5px
 }
 p {
     margin: 0;
@@ -69,15 +46,8 @@ p {
     margin-bottom: 15px;
     margin-left: 15px;
 }
-.btn {
-    color: black;
-    margin-bottom: 15px;
-}
-input {
-    color: black;
-}
 .navbar-default {
-    background-color: #5BC0DE;
+    padding-left: 20px;
 }
 .navbar-default .navbar-brand {
     color: #fff
@@ -85,20 +55,14 @@ input {
 .navbar-default .navbar-nav>li>a {
     color: #fff
 }
-.panel-info>.panel-heading {
-    background-color: #5BC0DE;
-    color: white;
+.card {
+    margin: 20px;
+}
+.bg-info > .card-body {
+    background-color: white;
 }
 @media (max-width: 767px) {
     .sidenav {
         display: none;    
-    }
-    .text-left .panel-body {
-        text-align: center;
-    }
-}
-@media (min-width: 767px) {
-    .container {
-        width: auto;    
     }
 }

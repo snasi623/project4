@@ -12,48 +12,51 @@
             <p>{{ quiz.instructions }}</p>
         </div>
         <hr>
-        <label for="student_name_real">Student Name:</label><input type="text" id="student_name_real" placeholder="Enter Student Name Here" required="required">
+        <label for="student_name_real">Student Name:</label><input type="text" class="form-control" id="student_name_real" placeholder="Enter Student Name Here" required="required">
         {% for r in formset %}
         {% with current_question=questions|get_item:r.question.value %}
-        <div class="panel panel-info questions">
-            <div class="panel-heading"><h4>{{ current_question.prompt }}</h4></div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>1. {{ current_question.option_1 }}</p> 
-                    </div>
-                    <div class="col-sm-6">
-                        <p>2. {{ current_question.option_2 }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>3. {{ current_question.option_3 }}</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>4. {{ current_question.option_4 }}</p>
-                    </div>
-                </div>
+        <div class="card text-dark bg-info mb-3 questions">
+            <div class="card-header"><h4>{{ current_question.prompt }}</h4></div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>1. {{ current_question.option_1 }}</p> 
+                            </div>
+                            <div class="col-sm-6">
+                                <p>2. {{ current_question.option_2 }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>3. {{ current_question.option_3 }}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>4. {{ current_question.option_4 }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-12">Choose Option: </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">{% render_field r.selected_option %}</div>
+                        </div>
+                    </li>
+                </ul>
             </div> 
-            <hr>
-            <div class="panel-body panel-info">
-                <div class="row">
-                    <div class="col-sm-12">Choose Option: </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">{% render_field r.selected_option %}</div>
-                </div>
-                {% render_field r.student_name class="student_name" %}
-                {% render_field r.quiz %}
-                {% render_field r.question %}
-                {{ r.submission_token.as_hidden }}
-            </div>
+            {% render_field r.student_name class="student_name" %}
+            {% render_field r.quiz %}
+            {% render_field r.question %}
+            {{ r.submission_token.as_hidden }}
         </div>
         {% endwith %}
         {% endfor %}
         <div class="row">
             <div class="col-sm-12">
-                <button class="btn" name="submit" type="submit">Submit Quiz</button>
+                <button class="btn btn-dark" name="submit" type="submit">Submit Quiz</button>
             </div>
         </div>
         {{ form.quiz }}
