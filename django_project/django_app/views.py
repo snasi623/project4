@@ -90,8 +90,6 @@ def quiz(request, quiz_pk):
         if formset.is_valid():
             formset.save()
             return redirect(reverse('results', args=(formset[0].instance.submission_token,)))
-        else:
-            pprint.pprint(formset.errors)
     else:
         QuizFormSet = modelformset_factory(QuestionResponse, form=TakeQuiz, extra=len(initial_responses))
         formset = QuizFormSet(queryset=QuestionResponse.objects.none(), initial=initial_responses)
