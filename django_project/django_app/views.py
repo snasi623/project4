@@ -1,3 +1,4 @@
+from pprint import pprint
 from django.shortcuts import render
 from .forms import CreateQuiz, CreateQuestions, TakeQuiz
 from .models import Quiz, Question, QuestionResponse
@@ -7,6 +8,8 @@ from django.forms import modelformset_factory
 from django.forms.models import model_to_dict
 from django.template.defaulttags import register
 import uuid
+
+import pprint 
 
 @register.filter
 def get_item(dictionary, key):
@@ -87,6 +90,8 @@ def quiz(request, quiz_pk):
         if formset.is_valid():
             formset.save()
             return redirect(reverse('results', args=(formset[0].instance.submission_token,)))
+        else:
+            pprint.pprint(formset.errors)
     else:
         QuizFormSet = modelformset_factory(QuestionResponse, form=TakeQuiz, extra=len(initial_responses))
         formset = QuizFormSet(queryset=QuestionResponse.objects.none(), initial=initial_responses)
